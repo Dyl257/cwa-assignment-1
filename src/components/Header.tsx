@@ -6,11 +6,16 @@ export default function Header({ studentNumber = '20959041' }: { studentNumber?:
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header style={{
-      display: 'flex', alignItems: 'center',
-      justifyContent: 'space-between', padding: '1rem',
-      borderBottom: '1px solid #ccc', position: 'relative'
-    }}>
+    <header
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '1rem',
+        borderBottom: '1px solid #ccc',
+        position: 'relative',
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <button
           aria-label="Toggle navigation menu"
@@ -23,17 +28,25 @@ export default function Header({ studentNumber = '20959041' }: { studentNumber?:
       </div>
 
       {menuOpen && (
-        <nav aria-label="Main navigation" style={{
-          position: 'absolute', top: '100%', left: 0, right: 0,
-          background: '#fff', padding: '1rem',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}>
+        <nav
+          aria-label="Main navigation"
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            background: '#fff',
+            padding: '1rem',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            zIndex: 10,
+          }}
+        >
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/escape-room">Escape Room</a></li>
-            <li><a href="/coding-races">Coding Races</a></li>
-            <li><a href="/court-room">Court Room</a></li>
+            <li><a href="/" style={{ display: 'inline-block', padding: '0.25rem 0' }}>Home</a></li>
+            <li><a href="/about" style={{ display: 'inline-block', padding: '0.25rem 0' }}>About</a></li>
+            <li><a href="/escape-room" style={{ display: 'inline-block', padding: '0.25rem 0' }}>Escape Room</a></li>
+            <li><a href="/coding-races" style={{ display: 'inline-block', padding: '0.25rem 0' }}>Coding Races</a></li>
+            <li><a href="/court-room" style={{ display: 'inline-block', padding: '0.25rem 0' }}>Court Room</a></li>
           </ul>
         </nav>
       )}
@@ -48,19 +61,17 @@ export default function Header({ studentNumber = '20959041' }: { studentNumber?:
 
 export function Footer({
   studentName = 'Dylan Fernando',
-  studentNumber = '20959041'
-}: { studentName?: string; studentNumber?: string }) {
+  studentNumber = '20959041',
+}: {
+  studentName?: string;
+  studentNumber?: string;
+}) {
   const today = new Date().toLocaleDateString();
   return (
-    <footer style={{
-      borderTop: '1px solid #ccc',
-      padding: '1rem',
-      textAlign: 'center'
-    }}>
+    <footer style={{ borderTop: '1px solid #ccc', padding: '1rem', textAlign: 'center' }}>
       <div>&copy; {new Date().getFullYear()} {studentName}</div>
       <div>Student #: {studentNumber}</div>
       <div>Date: {today}</div>
     </footer>
   );
 }
-

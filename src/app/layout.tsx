@@ -1,9 +1,10 @@
+import type { Metadata } from 'next';
 import './globals.css';
 import Header, { Footer } from '@/components/Header';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'CWA Assignment 1',
-  description: 'Front-end app for generating HTML5+JS code',
+  description: 'Front-end app for generating LMS-friendly HTML+JS (inline CSS only)',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

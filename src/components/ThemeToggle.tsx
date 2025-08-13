@@ -1,24 +1,27 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [dark, setDark] = useState(false);
 
-  // On mount, read the saved theme
+  // Read saved theme and apply on mount
   useEffect(() => {
-    const saved = window.localStorage.getItem('theme');
-    if (saved === 'dark') {
-      setDarkMode(true);
-      document.documentElement.style.background = '#111';
-      document.documentElement.style.color = '#eee';
-    }
+    const saved = typeof window !== 'undefined' && window.localStorage.getItem('theme');
+    const isDark = saved === 'dark';
+    setDark(isDark);
+    applyTheme(isDark);
   }, []);
 
+  const applyTheme = (isDark: boolean) => {
+    const root = document.documentElement;
+    root.style.background = isDark ? '#111' : '#fff';
+    root.style.color = isDark ? '#eee' : '#000';
+  };
+
   const toggle = () => {
-    const next = !darkMode;
-    setDarkMode(next);
-    document.documentElement.style.background = next ? '#111' : '#fff';
-    document.documentElement.style.color = next ? '#eee' : '#000';
+    const next = !dark;
+    setDark(next);
+    applyTheme(next);
     window.localStorage.setItem('theme', next ? 'dark' : 'light');
   };
 
@@ -28,7 +31,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.25rem' }}
     >
-      {darkMode ? '☀️' : '🌙'}
+      {dark ? '☀️' : '🌙'}
     </button>
   );
 }
